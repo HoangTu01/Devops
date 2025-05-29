@@ -1,0 +1,38 @@
+/* Đảm bảo tất cả card có cùng chiều cao */
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    min-height: 500px; /* Đảm bảo card có chiều cao tối thiểu */
+}
+
+/* Thiết lập hình ảnh cùng kích thước */
+.card img {
+    width: 100%;
+    height: 250px; /* Đặt chiều cao cố định */
+    object-fit: cover; /* Cắt ảnh sao cho vừa khung */
+    border-radius: 10px;
+}
+
+/* Đảm bảo phần nội dung có cùng chiều cao */
+.card-body {
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 200px; /* Đảm bảo phần nội dung không bị đẩy lệch */
+}
+
+/* Căn chỉnh nút bên dưới */
+.card-body .btn {
+    width: 100%;
+    margin-top: auto; /* Đẩy nút xuống dưới */
+}

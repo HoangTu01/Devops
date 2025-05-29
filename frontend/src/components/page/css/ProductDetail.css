@@ -1,0 +1,160 @@
+.product-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  padding: 40px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-image {
+  flex: 1;
+  text-align: center;
+}
+
+.product-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-info {
+  flex: 1;
+  padding-left: 40px;
+}
+
+.product-brand {
+  color: #4da6ff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #e63946;
+  margin: 10px 0;
+}
+
+.product-size,
+.product-quantity {
+  margin: 15px 0;
+}
+
+.product-size span,
+.product-quantity span {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.product-size select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.product-quantity button {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.product-quantity input {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-add-to-cart,
+.btn-buy-now {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add-to-cart {
+  background-color: #4da6ff;
+  color: #fff;
+  border: none;
+}
+
+.btn-add-to-cart:hover {
+  background-color: #007acc;
+}
+
+.btn-buy-now {
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+}
+
+.btn-buy-now:hover {
+  background-color: #b83240;
+}
+
+.product-hotline {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+/* Footer luôn ở dưới cùng của trang */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1; /* Giúp đẩy footer xuống dưới */
+  padding-bottom: 100px; /* Tạo khoảng cách 100px so với footer */
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 50px 0;
+  width: 100%;
+  position: relative;
+  margin-top: 100px; /* Cách phần trên 100px */
+}
+.footer {
+  background-color: black;
+  color: white;
+  padding: 50px 0; /* Giảm chiều cao của footer */
+  width: 100vw; /* Sử dụng 100vw để chiếm toàn bộ chiều rộng của viewport */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); /* Dịch chuyển footer về giữa */
+}
