@@ -2,51 +2,58 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main        # chạy khi push lên nhánh main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
+      # 1. Lấy code về runner
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Install Docker Compose
-        run: |
-          sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
-          docker-compose --version
+      # 2. Cài đặt Docker Buildx (cho phép build đa nền tảng & cache)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
+      # 3. Đăng nhập Docker Hub bằng Secrets
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build & push Docker images
-        env:
-          DOCKER_BUILDKIT: 1
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
-        run: |
-          docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1
-          docker-compose push
 
-      - name: Deploy to server
+      - name: Build & Push Backend
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest ./backend
+          docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
+
+      - name: Build & Push Frontend
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./frontend
+          docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest
+
+      - name: Deploy to Server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
+          username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd ~/Webbanphukienmaytinh
+            # Ghi file docker-compose từ secret
             echo "${{ secrets.DOCKER_COMPOSE_FILE }}" > docker-compose.yml
+
+            # Login Docker Hub
+            docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
+
+            # Kéo image mới nhất
             docker-compose pull
-            docker ps -a --filter "name=web-backend" --format '{{.ID}}' | xargs -r docker stop || true
-            docker ps -a --filter "name=web-backend" --format '{{.ID}}' | xargs -r docker rm || true
+
+            # Chạy lại container
             docker-compose up -d
+
+            # Dọn image cũ
             docker image prune -f
