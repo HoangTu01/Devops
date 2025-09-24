@@ -46,6 +46,7 @@ jobs:
             # Ghi file docker-compose từ secret
             echo "${{ secrets.DOCKER_COMPOSE_FILE }}" > docker-compose.yml
 
+
             # Login Docker Hub
             docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
 
