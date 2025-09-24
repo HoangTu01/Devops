@@ -3,7 +3,7 @@ services:
     build: 
       context: ./backend
       dockerfile: Dockerfile
-    image: hoangtu01/backend:latest
+    image: hoangngoctu/backend:latest
     container_name: backend
     environment:
       NODE_ENV: production
@@ -24,7 +24,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: hoangtu01/frontend:latest
+    image: hoangngoctu/frontend:latest
     container_name: frontend
     ports:
       - "80:80"
