@@ -1,0 +1,27 @@
+services:
+  backend:
+    build: ./backend
+    image: hoangtu01/backend:latest
+    container_name: backend
+    environment:
+      - NODE_ENV=production
+      - DB_CONNECTION_STRING=mongodb://user:pass@host:27017/dbname
+    ports:
+      - 3000:3000
+    restart: always
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    image: hoangtu01/frontend:latest
+    container_name: frontend
+    ports:
+      - 80:80
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
