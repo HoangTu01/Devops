@@ -1,19 +1,17 @@
-# Stage 1: Build / Install dependencies
 FROM node:20-alpine
+
+# Cài các gói cần thiết để build bcrypt
+RUN apk add --no-cache python3 make g++ 
 
 WORKDIR /app
 
-# Copy package.json và package-lock.json
+# Copy package.json và cài đặt lại toàn bộ dependencies
 COPY package*.json ./
+RUN npm install --omit=dev
 
-# Cài dependencies
-RUN npm install
-
-# Copy toàn bộ source code
+# Copy toàn bộ source code (không copy node_modules từ máy)
 COPY . .
 
-# Expose port backend
-EXPOSE 3000
+EXPOSE 5000
 
-# Chạy backend
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]
