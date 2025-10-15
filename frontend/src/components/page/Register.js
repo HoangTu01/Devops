@@ -13,7 +13,7 @@ const Register = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('https://api-ktpm-jfi8.onrender.com/api/users', {
+      const response = await axios.post('https://backendshopphone-3.onrender.com/api/users', {
         username,
         email,
         password,

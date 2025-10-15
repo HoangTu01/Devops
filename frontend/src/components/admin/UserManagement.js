@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 
-const API_URL = "https://api-ktpm-jfi8.onrender.com/api/users";
+const API_URL = "https://backendshopphone-3.onrender.com/api/users";
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);

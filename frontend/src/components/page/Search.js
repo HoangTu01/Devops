@@ -15,7 +15,7 @@ const Search = () => {
 
     const fetchResults = async () => {
       try {
-        const response = await axios.get(`https://api-ktpm-jfi8.onrender.com/api/products?name=${query}`);
+        const response = await axios.get(`https://backendshopphone-3.onrender.com/api/products?name=${query}`);
         const filteredResults = response.data.filter((product) =>
           product.name.toLowerCase().includes(query.toLowerCase())
         );

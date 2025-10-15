@@ -13,7 +13,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProductByName = async () => {
       try {
-        const response = await axios.get("https://api-ktpm-jfi8.onrender.com/api/products");
+        const response = await axios.get("https://backendshopphone-3.onrender.com/api/products");
         const filteredProduct = response.data.find((p) => p.name.toLowerCase() === name.toLowerCase());
         setProduct(filteredProduct || null);
       } catch (error) {

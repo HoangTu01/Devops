@@ -14,7 +14,7 @@ const Login = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('https://api-ktpm-jfi8.onrender.com/api/users/login', {
+      const response = await axios.post('https://backendshopphone-3.onrender.com/api/users/login', {
         email: loginEmail,
         password: loginPassword,
       });
@@ -27,6 +27,7 @@ const Login = () => {
     } catch (error) {
       setMessage('❌ Đăng nhập thất bại! Kiểm tra lại email & mật khẩu.');
       console.error('Error logging in:', error);
+      
     }
   };
 
