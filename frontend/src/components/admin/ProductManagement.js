@@ -9,6 +9,7 @@ const ProductManagement = () => {
     description: '',
     price: 0,
     imageUrl: '',
+    
   });
   const [editingProduct, setEditingProduct] = useState(null);
   const [message, setMessage] = useState('');
