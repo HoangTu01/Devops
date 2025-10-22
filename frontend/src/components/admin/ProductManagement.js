@@ -42,7 +42,7 @@ const ProductManagement = () => {
 
     try {
       const response = await axios.post(
-        'https://api-ktpm-jfi8.onrender.com/api/products',
+        'https://backendshopphone-3.onrender.com/api/products',
         productWithId
       );
       setProducts([...products, response.data]);
@@ -71,7 +71,7 @@ const ProductManagement = () => {
 
     try {
       const response = await axios.put(
-        `https://ktpm-e9c1.onrender.com/api/products/${editingProduct._id}`,
+        `https://backendshopphone-3.onrender.com/api/products/${editingProduct._id}`,
         newProduct
       );
       const updatedProducts = products.map((p) =>
@@ -91,7 +91,7 @@ const ProductManagement = () => {
 
     if (window.confirm('Bạn có chắc muốn xóa sản phẩm này không?')) {
       try {
-        await axios.delete(`https://ktpm-e9c1.onrender.com/api/products/${productId}`);
+        await axios.delete(`https://backendshopphone-3.onrender.com/api/products/${productId}`);
         setProducts(products.filter((p) => p._id !== productId));
         setMessage('✅ Xóa sản phẩm thành công!');
       } catch (error) {
